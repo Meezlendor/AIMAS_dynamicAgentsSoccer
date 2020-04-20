@@ -1,0 +1,44 @@
+tree("Root")
+	tree("version 1")
+
+tree("version 1")
+	fallback
+		tree("goalie1")
+		sequence
+			CanAttack
+			tree("attack2")
+		tree("defend1")
+
+tree("goalie1")
+	fallback
+		sequence
+			IsGoalie
+			InterpolateBall
+		sequence
+			NoGoalie
+			AmClosestToGoal
+			GoGoalie
+
+
+
+tree("attack2")
+	fallback
+		sequence
+			ClosestToBall
+			fallback
+				sequence
+					IsAligned
+					Shoot
+				PlaceWell
+		GoFar
+
+tree("defend1")
+	fallback
+		sequence
+			ClosestToBall
+			fallback
+				sequence
+					IsAligned
+					Shoot
+				StickCloseToEnemies
+		ProtectGoalie
